@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kontak KODAM XXIX/Mambruk — Hubungi kami untuk informasi, koordinasi, dan layanan pengaduan masyarakat">
+    <title>Kontak | KODAM XXIX/Mambruk</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ---- Kontak Page Styles ---- */
+        .kontak-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) { .kontak-layout { grid-template-columns: 1fr; } }
+
+        /* Contact Info Cards */
+        .kontak-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 500px) { .kontak-info-grid { grid-template-columns: 1fr; } }
+
+        .kontak-info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.25rem;
+            backdrop-filter: blur(var(--glass-blur));
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+        }
+        .kontak-info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .kontak-info-card .card-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0,137,123,0.08), transparent 60%);
+            pointer-events: none;
+        }
+        .kontak-info-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(0,105,92,0.15);
+            border: 1px solid rgba(0,105,92,0.25);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--green-neon);
+        }
+        .kontak-info-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gray-400);
+            margin-bottom: 0.4rem;
+        }
+        .kontak-info-value {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            line-height: 1.5;
+        }
+        .kontak-info-sub {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            margin-top: 0.2rem;
+        }
+
+        /* Map Placeholder */
+        .kontak-map {
+            background: linear-gradient(135deg, var(--dark-card), var(--gray-900));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            height: 280px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .kontak-map-overlay {
+            position: absolute;
+            inset: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,137,123,0.04) 40px, rgba(0,137,123,0.04) 41px),
+                repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,137,123,0.04) 40px, rgba(0,137,123,0.04) 41px);
+        }
+        .kontak-map-pin {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        .kontak-map-pin-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(0,105,92,0.9);
+            border: 2px solid var(--green-neon);
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0,230,118,0.3);
+            animation: pinPulse 2s ease-in-out infinite;
+        }
+        .kontak-map-pin-icon svg { transform: rotate(45deg); }
+        @keyframes pinPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,230,118,0.3); }
+            50% { box-shadow: 0 0 40px rgba(0,230,118,0.6); }
+        }
+        .kontak-map-label {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--white);
+            backdrop-filter: blur(8px);
+        }
+        .kontak-map-coord {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--green-neon);
+            margin-top: 0.3rem;
+        }
+
+        /* Contact Form */
+        .kontak-form-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2.25rem;
+            backdrop-filter: blur(var(--glass-blur));
+            position: relative;
+            overflow: hidden;
+        }
+        .kontak-form-card .card-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0,137,123,0.06), transparent 60%);
+            pointer-events: none;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--gray-300);
+            margin-bottom: 0.5rem;
+        }
+        .form-label span { color: #f44336; margin-left: 2px; }
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--white);
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            -webkit-appearance: none;
+        }
+        .form-input::placeholder,
+        .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--green-medium);
+            box-shadow: 0 0 0 3px rgba(0,137,123,0.15);
+        }
+        .form-select option { background: var(--dark-card); }
+        .form-textarea { resize: vertical; min-height: 130px; }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+        }
+        @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--green-primary), var(--green-medium));
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.3s var(--ease-out);
+            box-shadow: 0 4px 20px rgba(0,105,92,0.3);
+        }
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,105,92,0.5);
+        }
+        .form-submit:active { transform: translateY(0); }
+
+        /* Success Message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        .form-success.show { display: block; }
+        .form-success-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(0,230,118,0.1);
+            border: 2px solid rgba(0,230,118,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--green-neon);
+        }
+
+        /* Satuan Kontak Grid */
+        .satuan-kontak-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        @media (max-width: 900px) { .satuan-kontak-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 500px) { .satuan-kontak-grid { grid-template-columns: 1fr; } }
+
+        .satuan-kontak-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 14px;
+            padding: 1.25rem;
+            position: relative;
+            transition: transform 0.3s var(--ease-out);
+            backdrop-filter: blur(10px);
+        }
+        .satuan-kontak-card:hover { transform: translateY(-4px); }
+        .satuan-kontak-card .card-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(0,137,123,0.07), transparent 60%);
+            pointer-events: none;
+        }
+        .satuan-kontak-num {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--green-neon);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.4rem;
+        }
+        .satuan-kontak-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+        .satuan-kontak-loc {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .satuan-kontak-loc svg { width: 11px; height: 11px; }
+        .satuan-kontak-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--green-neon);
+            margin-top: 0.6rem;
+        }
+    </style>
+</head>
+<body class="inner-page">
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAVIGATION -->
+<nav id="navbar" class="navbar scrolled">
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><img src="LOGO_KODAM_XXIX_MAMBRUK.png" alt="Logo KODAM XXIX Mambruk" class="nav-logo-img"></div>
+            <div class="logo-text"><span class="logo-title">KODAM XXIX</span><span class="logo-subtitle">MAMBRUK</span></div>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html" class="nav-link">Beranda</a>
+            <a href="berita.html" class="nav-link">Berita</a>
+            <a href="galeri.html" class="nav-link">Galeri</a>
+            <a href="agenda.html" class="nav-link">Agenda</a>
+            <div class="nav-dropdown">
+                <a href="tentang.html" class="nav-link nav-dropdown-toggle">Tentang <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></a>
+                <div class="nav-dropdown-menu">
+                    <a href="tentang.html#profil" class="dropdown-item">Profil</a>
+                    <a href="tentang.html#visi-misi" class="dropdown-item">Visi &amp; Misi</a>
+                    <a href="tentang.html#sejarah" class="dropdown-item">Sejarah</a>
+                </div>
+            </div>
+            <a href="kontak.html" class="nav-link active">Kontak</a>
+        </div>
+        <div class="nav-clock" id="navClock" title="Waktu Operasional Komando (WIT)">
+            <span class="nav-clock-dot"></span>
+            <span class="nav-clock-time">--:--:--</span>
+            <span class="nav-clock-zone">WIT</span>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container">
+        <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Kontak</span></div>
+        <h1 class="page-hero-title">Hubungi Kami</h1>
+        <p class="page-hero-desc">Sampaikan pertanyaan, informasi, atau koordinasi kepada KODAM XXIX/Mambruk melalui saluran resmi yang tersedia.</p>
+    </div>
+</div>
+
+<!-- KONTAK SECTION -->
+<section class="section">
+    <div class="section-blob blob-1"></div>
+    <div class="container">
+        <div class="kontak-layout">
+
+            <!-- Left: Info + Map -->
+            <div>
+                <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+                    <span class="section-tag"><span class="tag-dot"></span>Informasi Kontak</span>
+                    <h2 class="section-title" style="font-size:1.8rem;">Saluran Resmi</h2>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="kontak-info-grid">
+                    <div class="kontak-info-card">
+                        <div class="card-glow"></div>
+                        <div class="kontak-info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div class="kontak-info-label">Alamat Makodam</div>
+                        <div class="kontak-info-value">Kawasan Kimi, Kab. Nabire</div>
+                        <div class="kontak-info-sub">Provinsi Papua Tengah</div>
+                    </div>
+
+                    <div class="kontak-info-card">
+                        <div class="card-glow"></div>
+                        <div class="kontak-info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        </div>
+                        <div class="kontak-info-label">Telepon</div>
+                        <div class="kontak-info-value">(0984) 21XXXX</div>
+                        <div class="kontak-info-sub">Penerangan Kodam</div>
+                    </div>
+
+                    <div class="kontak-info-card">
+                        <div class="card-glow"></div>
+                        <div class="kontak-info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        </div>
+                        <div class="kontak-info-label">Surel</div>
+                        <div class="kontak-info-value">pendam@kodam29mbr.mil.id</div>
+                        <div class="kontak-info-sub">Penerangan Kodam XXIX</div>
+                    </div>
+
+                    <div class="kontak-info-card">
+                        <div class="card-glow"></div>
+                        <div class="kontak-info-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="kontak-info-label">Jam Operasional</div>
+                        <div class="kontak-info-value">Sen – Jum: 08.00–16.00</div>
+                        <div class="kontak-info-sub">Waktu Indonesia Timur (WIT)</div>
+                    </div>
+                </div>
+
+                <!-- Map -->
+                <div class="kontak-map">
+                    <div class="kontak-map-overlay"></div>
+                    <div class="kontak-map-pin">
+                        <div class="kontak-map-pin-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="kontak-map-label">Makodam XXIX/Mambruk</div>
+                        <div class="kontak-map-coord">-3.3667° LS / 135.4944° BT — Kimi, Nabire</div>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="glass-card" style="padding:1.5rem; border-radius:16px;">
+                    <div class="card-glow"></div>
+                    <h4 style="font-size:0.82rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--gray-400); margin-bottom:1rem;">Media Sosial Resmi</h4>
+                    <div style="display:flex; flex-direction:column; gap:0.75rem;">
+                        <a href="#" style="display:flex; align-items:center; gap:0.85rem; text-decoration:none; color:var(--gray-300); font-size:0.88rem; font-weight:500; transition:color 0.3s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+                            <div style="width:36px;height:36px;background:rgba(29,161,242,0.1);border:1px solid rgba(29,161,242,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#1DA1F2;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                            </div>
+                            @kodam29mambruk
+                        </a>
+                        <a href="#" style="display:flex; align-items:center; gap:0.85rem; text-decoration:none; color:var(--gray-300); font-size:0.88rem; font-weight:500; transition:color 0.3s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+                            <div style="width:36px;height:36px;background:rgba(225,48,108,0.1);border:1px solid rgba(225,48,108,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#E1306C;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </div>
+                            @kodam.xxix.mambruk
+                        </a>
+                        <a href="#" style="display:flex; align-items:center; gap:0.85rem; text-decoration:none; color:var(--gray-300); font-size:0.88rem; font-weight:500; transition:color 0.3s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+                            <div style="width:36px;height:36px;background:rgba(255,0,0,0.1);border:1px solid rgba(255,0,0,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#FF0000;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                            </div>
+                            KODAM XXIX Mambruk Official
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div>
+                <div class="section-header" style="text-align:left; margin-bottom:2rem;">
+                    <span class="section-tag"><span class="tag-dot"></span>Pesan</span>
+                    <h2 class="section-title" style="font-size:1.8rem;">Kirim Pesan</h2>
+                </div>
+
+                <div class="kontak-form-card">
+                    <div class="card-glow"></div>
+
+                    <form id="kontakForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="namaInput">Nama Lengkap <span>*</span></label>
+                                <input class="form-input" type="text" id="namaInput" placeholder="Nama Anda" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="instansiInput">Instansi / Unit</label>
+                                <input class="form-input" type="text" id="instansiInput" placeholder="Instansi / Unit">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="emailInput">Alamat Surel <span>*</span></label>
+                                <input class="form-input" type="email" id="emailInput" placeholder="email@domain.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="teleponInput">Nomor Telepon</label>
+                                <input class="form-input" type="tel" id="teleponInput" placeholder="+62 8XX XXXX XXXX">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="topikSelect">Topik Pesan <span>*</span></label>
+                            <select class="form-select" id="topikSelect" required>
+                                <option value="" disabled selected>Pilih topik pesan…</option>
+                                <option value="informasi">Permohonan Informasi</option>
+                                <option value="koordinasi">Koordinasi Kegiatan</option>
+                                <option value="pengaduan">Pengaduan Masyarakat</option>
+                                <option value="media">Permintaan Wawancara / Media</option>
+                                <option value="kerjasama">Permohonan Kerjasama</option>
+                                <option value="lainnya">Lainnya</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="pesanInput">Pesan <span>*</span></label>
+                            <textarea class="form-textarea" id="pesanInput" placeholder="Tuliskan pesan Anda di sini…" required></textarea>
+                        </div>
+
+                        <button class="form-submit" type="submit" id="submitBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            Kirim Pesan
+                        </button>
+                    </form>
+
+                    <div class="form-success" id="formSuccess">
+                        <div class="form-success-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <h3 style="color:var(--white); margin-bottom:0.5rem;">Pesan Terkirim!</h3>
+                        <p style="color:var(--gray-300); font-size:0.88rem;">Terima kasih telah menghubungi KODAM XXIX/Mambruk. Tim kami akan merespons dalam 2×24 jam kerja.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Satuan Kontak -->
+        <div id="satuan" style="margin-top: 5rem;">
+            <div class="section-header">
+                <span class="section-tag"><span class="tag-dot"></span>Jajaran</span>
+                <h2 class="section-title">Kontak Satuan Jajaran</h2>
+                <p class="section-desc">Hubungi langsung satuan-satuan yang bertugas di wilayah Anda.</p>
+            </div>
+
+            <div class="satuan-kontak-grid">
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KOREM 173/PVB</div>
+                    <div class="satuan-kontak-name">Korem 173/Praja Vira Braja</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Nabire, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1703</div>
+                    <div class="satuan-kontak-name">Kodim 1703/Deiyai</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Deiyai, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1705</div>
+                    <div class="satuan-kontak-name">Kodim 1705/Nabire</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Nabire, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1710</div>
+                    <div class="satuan-kontak-name">Kodim 1710/Mimika</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Timika, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1714</div>
+                    <div class="satuan-kontak-name">Kodim 1714/Puncak Jaya</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mulia, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1717</div>
+                    <div class="satuan-kontak-name">Kodim 1717/Puncak</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ilaga, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+
+                <div class="satuan-kontak-card">
+                    <div class="card-glow"></div>
+                    <div class="satuan-kontak-num">KODIM 1718</div>
+                    <div class="satuan-kontak-name">Kodim 1718/Intan Jaya</div>
+                    <div class="satuan-kontak-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Sugapa, Papua Tengah</div>
+                    <div class="satuan-kontak-status"><span class="status-dot"></span>Operasional</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-glow-line"></div>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="LOGO_KODAM_XXIX_MAMBRUK.png" alt="Logo KODAM XXIX Mambruk" class="footer-logo-img">
+                    <div><span class="footer-title">KODAM XXIX</span><span class="footer-subtitle">MAMBRUK</span></div>
+                </div>
+                <p>Komando Daerah Militer XXIX/Mambruk — Nabire, Papua Tengah.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <a href="index.html">Beranda</a>
+                <a href="berita.html">Berita</a>
+                <a href="galeri.html">Galeri</a>
+                <a href="agenda.html">Agenda</a>
+                <a href="tentang.html">Tentang</a>
+                <a href="kontak.html">Kontak</a>
+            </div>
+            <div class="footer-links">
+                <h4>Tautan Penting</h4>
+                <a href="#">TNI AD</a>
+                <a href="#">Kementerian Pertahanan</a>
+                <a href="#">Mabes TNI</a>
+                <a href="#">Penerimaan Prajurit</a>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 KODAM XXIX/Mambruk. Seluruh Hak Dilindungi.</p></div>
+    </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="script.js"></script>
+<script>
+    // Form submission
+    const kontakForm = document.getElementById('kontakForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    kontakForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'Mengirim…';
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            kontakForm.style.display = 'none';
+            formSuccess.classList.add('show');
+        }, 1500);
+    });
+</script>
+</body>
+</html>

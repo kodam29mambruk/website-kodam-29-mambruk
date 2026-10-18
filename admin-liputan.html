@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Liputan &amp; Publikasi Penerangan | KODAM XXIX/MAMBRUK</title>
+    <meta name="description" content="Sistem Informasi Liputan dan Manajemen Berita Instan Penerangan KODAM XXIX/Mambruk Papua Tengah">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --prio-p1: #FF3B30;
+            --prio-p1-glow: rgba(255, 59, 48, 0.35);
+            --prio-p2: #FF9500;
+            --prio-p2-glow: rgba(255, 149, 0, 0.35);
+            --prio-p3: #00E676;
+            --prio-p3-glow: rgba(0, 230, 118, 0.3);
+            --admin-card: rgba(11, 32, 29, 0.85);
+            --admin-border: rgba(77, 182, 172, 0.25);
+        }
+
+        body {
+            background-color: #030a09;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Top Military Status Bar */
+        .admin-topbar {
+            background: rgba(0, 26, 21, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--admin-border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .admin-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .admin-brand img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(0, 230, 118, 0.3));
+        }
+
+        .admin-brand-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .admin-brand-badge {
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .admin-topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .server-status-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 230, 118, 0.1);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            color: var(--green-neon);
+            transition: all 0.3s ease;
+        }
+
+        .server-status-pill.offline {
+            background: rgba(255, 59, 48, 0.1);
+            border-color: rgba(255, 59, 48, 0.3);
+            color: #FF5252;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 8px currentColor;
+            animation: pulseLight 1.8s infinite;
+        }
+
+        @keyframes pulseLight {
+            0% { opacity: 0.4; transform: scale(0.9); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.4; transform: scale(0.9); }
+        }
+
+        .nav-links-quick a {
+            color: var(--gray-300);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .nav-links-quick a:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Container & Grid */
+        .admin-container {
+            max-width: 1440px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .admin-header-banner {
+            background: linear-gradient(135deg, rgba(0, 46, 37, 0.8), rgba(0, 26, 21, 0.95));
+            border: 1px solid var(--admin-border);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-header-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 300px; height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 230, 118, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+
+        .admin-header-text h1 {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0 0 6px 0;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .admin-header-text p {
+            color: var(--gray-300);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* 2-Column Main Workspace */
+        .workspace-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 0.95fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (max-width: 1024px) {
+            .workspace-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Admin Glass Panel */
+        .admin-panel {
+            background: var(--admin-card);
+            border: 1px solid var(--admin-border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .panel-title {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 1.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(77, 182, 172, 0.15);
+            padding-bottom: 0.75rem;
+        }
+
+        .panel-title svg {
+            color: var(--gold);
+        }
+
+        /* Priority Selector Pills */
+        .priority-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .priority-label {
+            display: block;
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            color: var(--gray-300);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .priority-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .priority-radio-card {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .priority-radio-card input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .priority-radio-inner {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 12px;
+            background: rgba(0, 20, 16, 0.6);
+            transition: all 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            height: 100%;
+        }
+
+        .priority-radio-card:hover .priority-radio-inner {
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .prio-badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            width: fit-content;
+        }
+
+        .prio-1 .prio-badge-pill { background: rgba(255, 59, 48, 0.2); color: #FF6B6B; }
+        .prio-2 .prio-badge-pill { background: rgba(255, 149, 0, 0.2); color: #FFA726; }
+        .prio-3 .prio-badge-pill { background: rgba(0, 230, 118, 0.15); color: #00E676; }
+
+        .prio-desc {
+            font-size: 0.74rem;
+            color: var(--gray-400);
+            line-height: 1.3;
+        }
+
+        /* Checked State */
+        .priority-radio-card input:checked + .priority-radio-inner.prio-1 {
+            border-color: var(--prio-p1);
+            background: rgba(255, 59, 48, 0.12);
+            box-shadow: 0 0 16px var(--prio-p1-glow);
+        }
+
+        .priority-radio-card input:checked + .priority-radio-inner.prio-2 {
+            border-color: var(--prio-p2);
+            background: rgba(255, 149, 0, 0.12);
+            box-shadow: 0 0 16px var(--prio-p2-glow);
+        }
+
+        .priority-radio-card input:checked + .priority-radio-inner.prio-3 {
+            border-color: var(--prio-p3);
+            background: rgba(0, 230, 118, 0.1);
+            box-shadow: 0 0 16px var(--prio-p3-glow);
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-200);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-label span.req {
+            color: #FF5252;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(4, 18, 15, 0.9);
+            border: 1px solid rgba(77, 182, 172, 0.25);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.88rem;
+            color: #fff;
+            font-family: inherit;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--green-neon);
+            box-shadow: 0 0 12px rgba(0, 230, 118, 0.25);
+            background: rgba(4, 24, 20, 0.95);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .priority-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* File Upload Drop Area */
+        .upload-dropzone {
+            border: 2px dashed rgba(77, 182, 172, 0.35);
+            background: rgba(0, 20, 16, 0.5);
+            border-radius: 12px;
+            padding: 1.75rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .upload-dropzone:hover, .upload-dropzone.dragover {
+            border-color: var(--green-neon);
+            background: rgba(0, 230, 118, 0.05);
+            box-shadow: 0 0 20px rgba(0, 230, 118, 0.15);
+        }
+
+        .upload-dropzone input[type="file"] {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            color: var(--green-pale);
+            margin-bottom: 8px;
+        }
+
+        .upload-text-main {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .upload-text-sub {
+            font-size: 0.74rem;
+            color: var(--gray-400);
+        }
+
+        /* Image Preview Box */
+        .preview-box {
+            margin-top: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--admin-border);
+            position: relative;
+            background: #000;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preview-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 20px 14px 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #fff;
+        }
+
+        .watermark-tag {
+            background: rgba(0, 105, 92, 0.9);
+            border: 1px solid var(--green-neon);
+            padding: 3px 8px;
+            border-radius: 4px;
+            letter-spacing: 0.8px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 1.75rem;
+        }
+
+        .btn-publish {
+            flex: 1;
+            background: linear-gradient(135deg, #00897B, #004D40);
+            border: 1px solid var(--green-neon);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Chakra Petch', sans-serif;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 230, 118, 0.25);
+        }
+
+        .btn-publish:hover {
+            background: linear-gradient(135deg, #00BFA5, #00695C);
+            box-shadow: 0 6px 25px rgba(0, 230, 118, 0.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--gray-300);
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-reset:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        /* Card Live Preview Simulation */
+        .live-card-sim {
+            background: rgba(8, 24, 22, 0.85);
+            border: 1px solid rgba(77, 182, 172, 0.3);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .live-sim-media {
+            height: 190px;
+            position: relative;
+            background: linear-gradient(135deg, #004D40, #00897B);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .live-sim-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .live-sim-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .live-sim-cat {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.7rem;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: #fff;
+        }
+
+        .live-sim-body {
+            padding: 16px;
+        }
+
+        .live-sim-meta {
+            font-size: 0.72rem;
+            color: var(--gold);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .live-sim-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.35;
+            margin: 0 0 8px 0;
+        }
+
+        .live-sim-desc {
+            font-size: 0.8rem;
+            color: var(--gray-300);
+            line-height: 1.45;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* News Manager Table */
+        .manager-section {
+            margin-top: 3rem;
+        }
+
+        .articles-table-wrap {
+            overflow-x: auto;
+            border: 1px solid var(--admin-border);
+            border-radius: 12px;
+            background: var(--admin-card);
+        }
+
+        .articles-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.84rem;
+        }
+
+        .articles-table th {
+            background: rgba(0, 26, 21, 0.9);
+            padding: 12px 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            color: var(--gray-300);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--admin-border);
+        }
+
+        .articles-table td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(77, 182, 172, 0.1);
+            color: var(--gray-200);
+            vertical-align: middle;
+        }
+
+        .articles-table tr:hover td {
+            background: rgba(0, 230, 118, 0.03);
+        }
+
+        .btn-table-del {
+            background: rgba(255, 59, 48, 0.15);
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            color: #FF5252;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .btn-table-del:hover {
+            background: #FF5252;
+            color: #fff;
+        }
+
+        /* Notification Toast */
+        .toast-notif {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(0, 46, 37, 0.95);
+            border: 1px solid var(--green-neon);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+            padding: 14px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .toast-notif.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP MILITARY STATUS BAR -->
+    <header class="admin-topbar">
+        <a href="index.html" class="admin-brand">
+            <img src="LOGO_KODAM_XXIX_MAMBRUK.png" alt="Logo KODAM XXIX/Mambruk">
+            <div class="admin-brand-title">
+                <span>KODAM XXIX / MAMBRUK</span>
+                <span class="admin-brand-badge">SISTEM REDAKSI &amp; LIPUTAN PENDAM</span>
+            </div>
+        </a>
+
+        <div class="admin-topbar-right">
+            <div id="serverStatusPill" class="server-status-pill">
+                <span class="pulse-dot"></span>
+                <span id="serverStatusText">MEMERIKSA SERVER...</span>
+            </div>
+
+            <div class="nav-links-quick">
+                <a href="index.html" target="_blank">🌐 Beranda Web</a>
+                <a href="berita.html" target="_blank">📰 Halaman Berita</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="admin-container">
+
+        <!-- HEADER BANNER -->
+        <div class="admin-header-banner">
+            <div class="admin-header-text">
+                <h1>PORTAL PENGISIAN LIPUTAN PENERANGAN KODAM</h1>
+                <p>Isi formulir liputan berita resmi di bawah ini. Begitu tombol <strong>"Publikasikan Sekarang"</strong> ditekan, berita otomatis langsung tayang di website dan menempati urutan prioritas teratas.</p>
+            </div>
+            <div style="text-align:right;">
+                <span style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--gold); display:block;">WAKTU KOMANDO (WIT):</span>
+                <span id="liveWitClock" style="font-family:'Chakra Petch',sans-serif; font-size:1.5rem; font-weight:700; color:#fff;">--:--:-- WIT</span>
+            </div>
+        </div>
+
+        <!-- MAIN 2-COLUMN WORKSPACE -->
+        <div class="workspace-grid">
+
+            <!-- LEFT: FORMULIR INPUT BERITA -->
+            <div class="admin-panel">
+                <h2 class="panel-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Formulir Berita / Siaran Pers
+                </h2>
+
+                <form id="newsForm" onsubmit="event.preventDefault(); submitNews();">
+
+                    <!-- TINGKAT PRIORITAS -->
+                    <div class="priority-group">
+                        <label class="priority-label">1. Tentukan Tingkat Prioritas Rilis:</label>
+                        <div class="priority-cards">
+                            <label class="priority-radio-card">
+                                <input type="radio" name="priorityLevel" value="P-1" checked onchange="updateLivePreview()">
+                                <div class="priority-radio-inner prio-1">
+                                    <span class="prio-badge-pill">🔴 P-1: FLASH</span>
+                                    <strong style="font-size:0.8rem; color:#fff;">Rilis Pangdam / Komando</strong>
+                                    <span class="prio-desc">Prioritas tertinggi A1, langsung disematkan (pinned) paling atas.</span>
+                                </div>
+                            </label>
+
+                            <label class="priority-radio-card">
+                                <input type="radio" name="priorityLevel" value="P-2" onchange="updateLivePreview()">
+                                <div class="priority-radio-inner prio-2">
+                                    <span class="prio-badge-pill">🟡 P-2: LIPUTAN</span>
+                                    <strong style="font-size:0.8rem; color:#fff;">Liputan Pendam / Jajaran</strong>
+                                    <span class="prio-desc">Liputan lapangan resmi dari tim dokumentasi Kodam/Korem/Kodim.</span>
+                                </div>
+                            </label>
+
+                            <label class="priority-radio-card">
+                                <input type="radio" name="priorityLevel" value="P-3" onchange="updateLivePreview()">
+                                <div class="priority-radio-inner prio-3">
+                                    <span class="prio-badge-pill">🟢 P-3: RUTIN</span>
+                                    <strong style="font-size:0.8rem; color:#fff;">Kegiatan Satuan</strong>
+                                    <span class="prio-desc">Rilis harian satuan jajaran dan agenda teritorial reguler.</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- JUDUL BERITA -->
+                    <div class="form-group">
+                        <label class="form-label">2. Judul Berita <span class="req">*</span></label>
+                        <input type="text" id="newsTitle" class="form-control" placeholder="Contoh: Pangdam XXIX/Mambruk Tinjau Kesiapan Batalyon Pembangunan di Nabire" required oninput="updateLivePreview()">
+                    </div>
+
+                    <!-- KATEGORI & TANGGAL -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">3. Kategori Berita <span class="req">*</span></label>
+                            <select id="newsCategory" class="form-control" onchange="updateLivePreview()">
+                                <option value="Pangdam & Pimpinan">Pangdam &amp; Pimpinan</option>
+                                <option value="Peresmian & Pembentukan">Peresmian &amp; Pembentukan</option>
+                                <option value="Pangkalan & Teritorial">Pangkalan &amp; Teritorial</option>
+                                <option value="Operasi Militer">Operasi Militer</option>
+                                <option value="Bakti TNI & Sosial">Bakti TNI &amp; Sosial</option>
+                                <option value="Olahraga & Prestasi">Olahraga &amp; Prestasi</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Tanggal Peliputan</label>
+                            <input type="text" id="newsDate" class="form-control" placeholder="Otomatis Hari Ini">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Lokasi Liputan</label>
+                            <input type="text" id="newsLocation" class="form-control" placeholder="Nabire, Papua Tengah" oninput="updateLivePreview()">
+                        </div>
+                    </div>
+
+                    <!-- METADATA PELIPUT -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Satuan Peliput</label>
+                            <input type="text" id="newsSource" class="form-control" value="Pendam XXIX/Mambruk" placeholder="Pendam XXIX / Kodim 1705" oninput="updateLivePreview()">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label class="form-label">Kameramen / Tim Peliput</label>
+                            <input type="text" id="newsReporter" class="form-control" placeholder="Contoh: Serka Hendrik / Tim Liputan Dispen" oninput="updateLivePreview()">
+                        </div>
+                    </div>
+
+                    <!-- RINGKASAN LEAD -->
+                    <div class="form-group">
+                        <label class="form-label">4. Ringkasan Singkat (Lead / Snippet) <span class="req">*</span></label>
+                        <textarea id="newsSnippet" class="form-control" rows="2" placeholder="Tuliskan 1-2 kalimat ringkasan penting rilis berita ini..." required oninput="updateLivePreview()"></textarea>
+                    </div>
+
+                    <!-- ISI BERITA LENGKAP -->
+                    <div class="form-group">
+                        <label class="form-label">5. Isi Berita Lengkap (Rilis Pers)</label>
+                        <textarea id="newsContent" class="form-control" rows="5" placeholder="Masukkan narasi lengkap rilis berita di sini..."></textarea>
+                    </div>
+
+                    <!-- CHECKBOX FEATURED -->
+                    <div class="form-group" style="display:flex; align-items:center; gap:10px; background:rgba(0,0,0,0.25); padding:10px 14px; border-radius:8px;">
+                        <input type="checkbox" id="newsIsFeatured" checked style="width:18px; height:18px; accent-color:var(--gold);">
+                        <label for="newsIsFeatured" style="font-size:0.84rem; color:#fff; cursor:pointer;">
+                            ⭐ <strong>Sematkan sebagai Berita Pilihan Utama (Featured)</strong> di halaman depan website.
+                        </label>
+                    </div>
+
+                    <!-- TOMBOL AKSI -->
+                    <div class="action-buttons">
+                        <button type="submit" class="btn-publish" id="btnPublish">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            PUBLIKASIKAN KE WEBSITE SEKARANG
+                        </button>
+                        <button type="button" class="btn-reset" onclick="resetForm()">Bersihkan</button>
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- RIGHT: FOTO DOKUMENTASI & LIVE PREVIEW -->
+            <div>
+                <!-- PANEL UPLOAD FOTO -->
+                <div class="admin-panel" style="margin-bottom: 2rem;">
+                    <h2 class="panel-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                        Foto Dokumentasi Liputan
+                    </h2>
+
+                    <div class="upload-dropzone" id="dropZone">
+                        <input type="file" id="imageFileInput" accept="image/*" onchange="handleFileSelect(event)">
+                        <div class="upload-icon">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <div class="upload-text-main">Tarik &amp; Letakkan Foto Liputan ke Sini</div>
+                        <div class="upload-text-sub">atau klik untuk memilih foto dari komputer (JPG, PNG, WEBP)</div>
+                    </div>
+
+                    <div style="margin-top: 10px; display:flex; gap:8px;">
+                        <input type="text" id="imageUrlInput" class="form-control" placeholder="Atau tempel URL gambar eksternal di sini..." oninput="handleUrlInput(this.value)">
+                        <button type="button" class="btn-reset" style="white-space:nowrap; padding:10px 14px;" onclick="useDefaultLogo()">Gunakan Logo</button>
+                    </div>
+
+                    <!-- PREVIEW WATERMARK -->
+                    <div class="preview-box" id="previewBox">
+                        <img id="previewImage" class="preview-img" src="LOGO_KODAM_XXIX_MAMBRUK.png" style="object-fit:contain; padding:20px; background:#001A15;">
+                        <div class="watermark-overlay">
+                            <span class="watermark-tag">PENERANGAN KODAM XXIX/MAMBRUK</span>
+                            <span id="previewLocationTag">NABIRE, PAPUA TENGAH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL LIVE PREVIEW KARTU DI WEB -->
+                <div class="admin-panel">
+                    <h2 class="panel-title">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        Simulasi Tampilan di Website (Live Preview)
+                    </h2>
+
+                    <div class="live-card-sim">
+                        <div class="live-sim-media" id="simMediaBg">
+                            <img id="simCardImg" src="LOGO_KODAM_XXIX_MAMBRUK.png" style="object-fit:contain; padding:20px;">
+                            <div class="live-sim-badge" id="simPrioBadge" style="background:#FF3B30; color:#fff;">⚡ RILIS FLASH PENDAM</div>
+                            <div class="live-sim-cat" id="simCatBadge">Pangdam &amp; Pimpinan</div>
+                        </div>
+                        <div class="live-sim-body">
+                            <div class="live-sim-meta">
+                                <span id="simDateText">Hari Ini, WIT</span>
+                                <span id="simSourceText">Pendam XXIX/Mambruk</span>
+                            </div>
+                            <h3 class="live-sim-title" id="simTitleText">Pangdam XXIX/Mambruk Tinjau Kesiapan Batalyon Pembangunan di Nabire</h3>
+                            <p class="live-sim-desc" id="simSnippetText">Tuliskan ringkasan berita di formulir sebelah kiri untuk melihat tampilan simulasi kartu secara realtime di sini...</p>
+                            <div style="font-size:0.75rem; color:var(--green-pale); display:flex; align-items:center; gap:6px; font-weight:600;">
+                                Baca Selengkapnya &rarr;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- DAFTAR BERITA AKTIF DI WEBSITE -->
+        <section class="manager-section">
+            <div class="admin-panel">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem;">
+                    <h2 class="panel-title" style="margin:0; border:none; padding:0;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                        Daftar Berita Aktif di Website (<span id="totalArticlesCount">0</span>)
+                    </h2>
+                    <div style="display:flex; gap:10px;">
+                        <button class="btn-reset" style="padding:6px 12px; font-size:0.8rem;" onclick="loadArticlesList()">🔄 Segarkan Data</button>
+                    </div>
+                </div>
+
+                <div class="articles-table-wrap">
+                    <table class="articles-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 110px;">Prioritas</th>
+                                <th>Judul Berita</th>
+                                <th>Kategori</th>
+                                <th>Tanggal</th>
+                                <th>Sumber / Peliput</th>
+                                <th style="text-align: right;">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="articlesTableBody">
+                            <tr>
+                                <td colspan="6" style="text-align:center; padding:2rem; color:var(--gray-400);">Memuat daftar berita aktif...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- TOAST NOTIFIKASI -->
+    <div id="toastNotif" class="toast-notif">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--green-neon)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span id="toastMsg" style="font-size:0.9rem; font-weight:600; color:#fff;">Berita berhasil diterbitkan!</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="berita-data.js"></script>
+    <script>
+        let currentArticles = [];
+        let currentUploadedImageUrl = 'LOGO_KODAM_XXIX_MAMBRUK.png';
+        let isServerOnline = false;
+
+        // Inisialisasi Jam WIT
+        function initWitClock() {
+            function update() {
+                const now = new Date();
+                try {
+                    const timeFormatter = new Intl.DateTimeFormat('en-GB', {
+                        timeZone: 'Asia/Jayapura',
+                        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+                    });
+                    document.getElementById('liveWitClock').textContent = timeFormatter.format(now) + ' WIT';
+                } catch(e) {
+                    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+                    const wit = new Date(utc + (9 * 3600000));
+                    document.getElementById('liveWitClock').textContent = wit.toTimeString().split(' ')[0] + ' WIT';
+                }
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Cek Status Server Backend
+        async function checkServerStatus() {
+            const pill = document.getElementById('serverStatusPill');
+            const text = document.getElementById('serverStatusText');
+            try {
+                const res = await fetch('/api/berita', { method: 'GET', cache: 'no-store' });
+                if (res.ok) {
+                    isServerOnline = true;
+                    pill.className = 'server-status-pill';
+                    text.textContent = '🟢 SERVER AKTIF (INSTAN)';
+                    return true;
+                }
+            } catch(e) {
+                // Fallback offline / file protocol
+            }
+            isServerOnline = false;
+            pill.className = 'server-status-pill offline';
+            text.textContent = '🟡 MODE BROWSER';
+            return false;
+        }
+
+        // Handle File Upload
+        async function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Jika server aktif, upload langsung ke server
+            reader.onload = async function(evt) {
+                const base64Data = evt.target.result;
+                setCoverImage(base64Data);
+
+                if (isServerOnline) {
+                    try {
+                        showToast('Mengunggah foto liputan...');
+                        const res = await fetch('/api/upload', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                filename: file.name,
+                                data: base64Data
+                            })
+                        });
+                        const result = await res.json();
+                        if (result.status === 'success' && result.image_url) {
+                            currentUploadedImageUrl = result.image_url;
+                            showToast('Foto liputan berhasil disimpan ke server!');
+                        }
+                    } catch(err) {
+                        console.error('Upload foto gagal:', err);
+                    }
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleUrlInput(url) {
+            if (url && url.trim() !== '') {
+                setCoverImage(url.trim());
+            }
+        }
+
+        function useDefaultLogo() {
+            setCoverImage('LOGO_KODAM_XXIX_MAMBRUK.png');
+            document.getElementById('imageUrlInput').value = '';
+        }
+
+        function setCoverImage(src) {
+            currentUploadedImageUrl = src;
+            const pImg = document.getElementById('previewImage');
+            const sImg = document.getElementById('simCardImg');
+
+            pImg.src = src;
+            sImg.src = src;
+
+            if (src.includes('LOGO_KODAM')) {
+                pImg.style.objectFit = 'contain';
+                pImg.style.padding = '20px';
+                sImg.style.objectFit = 'contain';
+                sImg.style.padding = '20px';
+            } else {
+                pImg.style.objectFit = 'cover';
+                pImg.style.padding = '0';
+                sImg.style.objectFit = 'cover';
+                sImg.style.padding = '0';
+            }
+        }
+
+        // Live Preview Update
+        function updateLivePreview() {
+            const prio = document.querySelector('input[name="priorityLevel"]:checked').value;
+            const title = document.getElementById('newsTitle').value || 'Pangdam XXIX/Mambruk Tinjau Kesiapan Batalyon Pembangunan di Nabire';
+            const cat = document.getElementById('newsCategory').value;
+            const source = document.getElementById('newsSource').value || 'Pendam XXIX/Mambruk';
+            const location = document.getElementById('newsLocation').value || 'Nabire, Papua Tengah';
+            const snippet = document.getElementById('newsSnippet').value || 'Tuliskan ringkasan berita di formulir sebelah kiri untuk melihat tampilan simulasi kartu secara realtime di sini...';
+
+            document.getElementById('simTitleText').textContent = title;
+            document.getElementById('simCatBadge').textContent = cat;
+            document.getElementById('simSourceText').textContent = source;
+            document.getElementById('simSnippetText').textContent = snippet;
+            document.getElementById('previewLocationTag').textContent = location.toUpperCase();
+
+            const badge = document.getElementById('simPrioBadge');
+            if (prio === 'P-1') {
+                badge.style.background = '#FF3B30';
+                badge.textContent = '⚡ RILIS FLASH PENDAM';
+            } else if (prio === 'P-2') {
+                badge.style.background = '#FF9500';
+                badge.textContent = '🔴 LIPUTAN LANGSUNG';
+            } else {
+                badge.style.background = '#00E676';
+                badge.textContent = 'KEGIATAN SATUAN';
+            }
+        }
+
+        // Muat Daftar Berita
+        async function loadArticlesList() {
+            let data = null;
+            if (isServerOnline) {
+                try {
+                    const res = await fetch('/api/berita?t=' + Date.now());
+                    if (res.ok) data = await res.json();
+                } catch(e) {}
+            }
+            if (!data) {
+                data = await loadMambrukNewsData();
+            }
+
+            if (data && data.articles) {
+                currentArticles = data.articles;
+                document.getElementById('totalArticlesCount').textContent = currentArticles.length;
+                renderArticlesTable(currentArticles);
+            }
+        }
+
+        function renderArticlesTable(articles) {
+            const tbody = document.getElementById('articlesTableBody');
+            if (!articles || articles.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:2rem;">Belum ada berita.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = articles.map(art => {
+                const prio = art.priority_level || (art.is_live_scraped ? 'P-4' : 'P-3');
+                let prioBadge = `<span class="prio-badge-pill" style="background:rgba(255,255,255,0.1); color:#aaa;">P-4 MEDIA</span>`;
+                if (prio === 'P-1') prioBadge = `<span class="prio-badge-pill" style="background:rgba(255,59,48,0.2); color:#FF6B6B;">🔴 P-1 FLASH</span>`;
+                else if (prio === 'P-2') prioBadge = `<span class="prio-badge-pill" style="background:rgba(255,149,0,0.2); color:#FFA726;">🟡 P-2 LIPUTAN</span>`;
+                else if (prio === 'P-3') prioBadge = `<span class="prio-badge-pill" style="background:rgba(0,230,118,0.15); color:#00E676;">🟢 P-3 SATUAN</span>`;
+
+                return `
+                    <tr>
+                        <td>${prioBadge}</td>
+                        <td>
+                            <strong style="color:#fff; display:block; margin-bottom:2px;">${escapeHtml(art.title)}</strong>
+                            <small style="color:var(--gray-400);">${art.snippet ? escapeHtml(art.snippet.substring(0, 75)) + '...' : ''}</small>
+                        </td>
+                        <td><span style="font-size:0.75rem; background:rgba(255,255,255,0.06); padding:3px 8px; border-radius:4px;">${escapeHtml(art.category)}</span></td>
+                        <td style="white-space:nowrap; font-size:0.75rem;">${escapeHtml(art.date || '-')}</td>
+                        <td><span style="color:var(--gold); font-weight:600; font-size:0.78rem;">${escapeHtml(art.source || 'Pendam')}</span></td>
+                        <td style="text-align:right; white-space:nowrap;">
+                            <a href="${art.link || 'berita.html'}" target="_blank" style="color:var(--green-pale); margin-right:8px; text-decoration:none; font-size:0.75rem;">Lihat</a>
+                            <button class="btn-table-del" onclick="deleteArticle('${art.id}')">Hapus</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Kirim & Publikasikan Berita
+        async function submitNews() {
+            const btn = document.getElementById('btnPublish');
+            btn.disabled = true;
+            btn.innerHTML = '⏳ MEMPROSES PUBLIKASI...';
+
+            const prio = document.querySelector('input[name="priorityLevel"]:checked').value;
+            const title = document.getElementById('newsTitle').value.trim();
+            const category = document.getElementById('newsCategory').value;
+            const location = document.getElementById('newsLocation').value.trim() || 'Nabire, Papua Tengah';
+            const source = document.getElementById('newsSource').value.trim() || 'Pendam XXIX/Mambruk';
+            const reporter = document.getElementById('newsReporter').value.trim();
+            const snippet = document.getElementById('newsSnippet').value.trim();
+            const content = document.getElementById('newsContent').value.trim();
+            const isFeatured = document.getElementById('newsIsFeatured').checked;
+
+            // Buat objek tanggal WIT
+            const now = new Date();
+            const bulanId = ["", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const customDate = document.getElementById('newsDate').value.trim();
+            const dateStr = customDate || `${now.getDate()} ${bulanId[now.getMonth() + 1]} ${now.getFullYear()}`;
+
+            const articleId = 'mbrk-pen-' + Date.now();
+
+            const newArticle = {
+                id: articleId,
+                title: title,
+                link: "berita.html?id=" + articleId,
+                date: dateStr,
+                source: source,
+                snippet: snippet,
+                content: content || snippet,
+                category: category,
+                is_featured: isFeatured,
+                is_live_scraped: false,
+                is_priority: true,
+                priority_level: prio,
+                lokasi: location,
+                peliput: reporter || "Tim Liputan Penerangan",
+                image: currentUploadedImageUrl
+            };
+
+            if (isServerOnline) {
+                try {
+                    const res = await fetch('/api/berita', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(newArticle)
+                    });
+                    const resData = await res.json();
+                    if (resData.status === 'success') {
+                        showToast('Berita berhasil DITERBITKAN INSTAN ke website!');
+                        resetForm();
+                        loadArticlesList();
+                    } else {
+                        alert('Gagal mempublikasikan: ' + resData.message);
+                    }
+                } catch(err) {
+                    alert('Terjadi kesalahan koneksi server: ' + err.message);
+                }
+            } else {
+                // Simpan offline ke array dan tawari download
+                currentArticles.unshift(newArticle);
+                renderArticlesTable(currentArticles);
+                downloadJsonFallback(currentArticles);
+                showToast('Mode Browser: berita.json telah diunduh, silakan gantikan file lama.');
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg> PUBLIKASIKAN KE WEBSITE SEKARANG`;
+        }
+
+        // Hapus Berita
+        async function deleteArticle(id) {
+            if (!confirm('Apakah Anda yakin ingin menghapus berita ini dari website?')) return;
+
+            if (isServerOnline) {
+                try {
+                    const res = await fetch('/api/berita?id=' + encodeURIComponent(id), { method: 'DELETE' });
+                    const resData = await res.json();
+                    if (resData.status === 'success') {
+                        showToast('Berita telah dihapus.');
+                        loadArticlesList();
+                    } else {
+                        alert('Gagal menghapus berita.');
+                    }
+                } catch(e) {
+                    alert('Gagal menghubungi server.');
+                }
+            } else {
+                currentArticles = currentArticles.filter(a => a.id !== id);
+                renderArticlesTable(currentArticles);
+                downloadJsonFallback(currentArticles);
+                showToast('Berita dihapus. File berita.json baru telah diunduh.');
+            }
+        }
+
+        function downloadJsonFallback(articles) {
+            const data = {
+                status: "success",
+                last_updated: new Date().toLocaleString(),
+                total_articles: articles.length,
+                engine: "KODAM XXIX Mambruk News Scraper & Pendam Editorial CMS v2.5",
+                articles: articles
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'berita.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function resetForm() {
+            document.getElementById('newsForm').reset();
+            document.querySelector('input[name="priorityLevel"][value="P-1"]').checked = true;
+            document.getElementById('newsSource').value = 'Pendam XXIX/Mambruk';
+            useDefaultLogo();
+            updateLivePreview();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastNotif');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text.replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        // Inisialisasi awal
+        window.addEventListener('DOMContentLoaded', async () => {
+            initWitClock();
+            await checkServerStatus();
+            await loadArticlesList();
+            updateLivePreview();
+        });
+    </script>
+</body>
+</html>

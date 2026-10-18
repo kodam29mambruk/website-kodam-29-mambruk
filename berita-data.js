@@ -1,0 +1,230 @@
+// Data Berita KODAM XXIX/Mambruk - Di-generate otomatis oleh scraper.py
+window.MAMBRUK_NEWS_DATA = {
+  "status": "success",
+  "last_updated": "17 October 2026, 18:11:13 WIT",
+  "total_articles": 20,
+  "engine": "KODAM XXIX Mambruk News Scraper Engine v2.0",
+  "articles": [
+    {
+      "id": "mbrk-01",
+      "title": "KODAM XXIX/Mambruk Resmi Dibentuk — Presiden Prabowo Subianto Kukuhkan Penguatan Wilayah Papua Tengah",
+      "link": "https://indeks.co.id",
+      "date": "5 Oktober 2026",
+      "source": "Indeks News / Mabes TNI",
+      "snippet": "Presiden RI Prabowo Subianto meresmikan pembentukan Kodam XXIX/Mambruk bertepatan dengan HUT ke-81 TNI di Jakarta. Pembentukan Kodam baru ini merupakan langkah strategis menata organisasi pertahanan di 8 kabupaten Provinsi Papua Tengah.",
+      "category": "Peresmian & Pembentukan",
+      "is_featured": true,
+      "is_live_scraped": false
+    },
+    {
+      "id": "mbrk-02",
+      "title": "Mayjen TNI Aminton Manurung Dipercaya Sebagai Pangdam XXIX/Mambruk Pertama",
+      "link": "https://antaranews.com",
+      "date": "6 Oktober 2026",
+      "source": "Antara News",
+      "snippet": "Mantan Asisten Operasi Kepala Staf Angkatan Darat (Asops Kasad) Mayjen TNI Aminton Manurung resmi memegang tongkat komando pertama KODAM XXIX/Mambruk untuk mengawal stabilitas keamanan dan percepatan pembangunan di Papua Tengah.",
+      "category": "Pangdam & Pimpinan",
+      "is_featured": false,
+      "is_live_scraped": false
+    },
+    {
+      "id": "mbrk-03",
+      "title": "Makodam XXIX/Mambruk Berlokasi di Kawasan Kimi Nabire Seluas 206 Hektare",
+      "link": "https://papuaposnabire.com",
+      "date": "10 Oktober 2026",
+      "source": "Papua Pos Nabire",
+      "snippet": "Pemerintah Provinsi Papua Tengah menyiapkan lahan seluas kurang lebih 206 hektare di kawasan Kimi, Nabire untuk Kompleks Markas Komando permanen KODAM XXIX/Mambruk, dengan pemanfaatan sementara Markas Korem 173/PVB.",
+      "category": "Pangkalan & Teritorial",
+      "is_featured": false,
+      "is_live_scraped": false
+    },
+    {
+      "id": "mbrk-04",
+      "title": "TNI AD Siapkan Pembentukan Batalyon Teritorial Pembangunan di Wilayah Kodam XXIX/Mambruk",
+      "link": "https://tniad.mil.id",
+      "date": "12 Oktober 2026",
+      "source": "Dispenad / TNI AD",
+      "snippet": "Mabes TNI AD menyiapkan pembentukan Batalyon Teritorial Pembangunan (BTP) untuk mendampingi pemerintah daerah dalam membuka akses isolasi pedalaman di Intan Jaya, Puncak, dan Mimika.",
+      "category": "Bakti TNI & Sosial",
+      "is_featured": false,
+      "is_live_scraped": false
+    },
+    {
+      "id": "mbrk-05",
+      "title": "Kodam XXIX/Mambruk Bawahi 8 Kabupaten di Papua Tengah Melalui Korem 173/PVB dan Jajaran Kodim",
+      "link": "https://wikipedia.org",
+      "date": "14 Oktober 2026",
+      "source": "Puspen TNI",
+      "snippet": "Wilayah hukum teritorial Kodam XXIX mencakup Kabupaten Nabire, Dogiyai, Deiyai, Paniai, Intan Jaya, Puncak, Puncak Jaya, dan Mimika untuk memastikan keamanan wilayah dan pelayanan masyarakat.",
+      "category": "Operasi Militer",
+      "is_featured": false,
+      "is_live_scraped": false
+    },
+    {
+      "id": "scraped-423038",
+      "title": "Kodam XXIX/Mambruk Resmi Berdiri di Nabire, Perkuat Pertanahan dan Pengabdian TNI AD di Papua Tengah",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPWC03UG5tc1otME9EYjk2U1h4Z1JJN2g3enQ3ME9YczhzeU9sT1VQOE9XOC1XMThqSW5EWkVndmZlTHNyZFpGUF9SSnVwRHlHRVNYLUJSblA1ZUxtV2ZHajQ4WlNjY1duZC1lR2FxdkoxZVNFbGMxWHRwMUt1eld0dWU0bjNIaUF4ZVBuMVQxZFZocFR5elhrTGJvTkNLVHV4OHhkUlpvNWctaWh5Nl9SNjZpTkxvY1VzWkNFUTA4Yw?oc=5",
+      "date": "Sat, 17 Oct 2026",
+      "source": "KLIK7TV",
+      "snippet": "Kodam XXIX/Mambruk Resmi Berdiri di Nabire, Perkuat Pertanahan dan Pengabdian TNI AD di Papua Tengah&nbsp;&nbsp;KLIK7TV",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-789826",
+      "title": "Era Baru Papua Tengah! Kodam XXIX/Mambruk Resmi Berdiri di Nabire, Presiden Prabowo Langsung Resmikan",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPbTFEVGJMNk1qckNMNHJSSnc3VzV0eG9HeDI0V1I0THFmTjY1QzNmeWZxQk1nRmxxRDhxaDFZMi1WRXdsZ2ppVWFDTXFzS3YzZDlDNmlDWUlaR0JZdkhyLWM2dWs1NEdReFotRDBtMERmNURNNnJ2Q3RuYWVRcFRGdGgwVWlZRDRla2NIYmJPN0ltMTlqZWxOMDdsNTROaGJyeUNNRXdPRGlGcV9rdVh5R3VOdnJWUWRoMXk5ak1vTXhSVWFUNzhoWktkQQ?oc=5",
+      "date": "Fri, 16 Oct 2026",
+      "source": "WartaPlus",
+      "snippet": "Era Baru Papua Tengah! Kodam XXIX/Mambruk Resmi Berdiri di Nabire, Presiden Prabowo Langsung Resmikan&nbsp;&nbsp;WartaPlus",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-951073",
+      "title": "Dandim Intan Jaya Optimistis Kehadiran Kodam Mambruk Kemanunggalan TNI Makin Kuat",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNQUtHTlJLOTlhcGQ1b3ZjUzFfXzBQamdKb3hCUlBYbjNlNm9VVjA0Q2hCbmRCZUF3UVFlaVZiMnAtTVg3UHVFaTZwaHYyeEFyV3JSVDMwOXB1SDJ4Z3U4NE12ZHlmV1ZrRDFjOXBrOVdKeGcwQUJTb2k2ZjhGcWd5dWVxRTZUVmQzVnRCSE9vOUpERTlvTnhiOXNZbEJsd3Fzbko0T0ZVRklycnhUelhhaXdranRvQVE?oc=5",
+      "date": "Sat, 17 Oct 2026",
+      "source": "seputarpapua.com",
+      "snippet": "Dandim Intan Jaya Optimistis Kehadiran Kodam Mambruk Kemanunggalan TNI Makin Kuat&nbsp;&nbsp;seputarpapua.com",
+      "category": "Berita Terkini",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-288670",
+      "title": "Kodam XXIX/Mambruk Resmi Berdiri di Papua Tengah, Mayjen Aminton Manurung Jadi Pangdam Pertama",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPa1FSeEtaaF9uT2VzNzlrbE9FVEttc0EybUd5blBpX1FHVzRzQnJtRUtKcWtQRzZud3ZKcVM1LXVJbDZpYnZEZ1ZySGJnVlBYNHBqOVRQeGZabUFCcGpDenZWLVcwLU4zaE5SdVB5cHNKT1lJUXNQYkJla01vVlJlZG40RldXaldoTWVzempOWWlwTjI5TGtWYzRNb05kX2hCVkFCa3Zyck1qNVFwNGtBLWVTMXlnNnhJQ2w1QmxJU0VubkdHYzFN?oc=5",
+      "date": "Fri, 16 Oct 2026",
+      "source": "kabarpublik",
+      "snippet": "Kodam XXIX/Mambruk Resmi Berdiri di Papua Tengah, Mayjen Aminton Manurung Jadi Pangdam Pertama&nbsp;&nbsp;kabarpublik",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-369905",
+      "title": "Kodam XXIX/Mambruk Resmi Berdiri, Perkuat Pertahanan Papua Tengah",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPNG1tdE43VVNvOGd1aEFwSVlOYkFJZENLbENzcmZaN1Q1cjhJd2p3bjM1Nm1pcWFPODlJVENSMmtDdlF6a0NfdllNdVNyMVhfd0FrTmREZXZncm0tTDh5aTFST1Y0dUhteDlwNkw1UXNaRkhSZGpjdzhEMktRZzNXTXFNNDlfMzNYR2czS2RldjhJZw?oc=5",
+      "date": "Fri, 16 Oct 2026",
+      "source": "Antar Papua",
+      "snippet": "Kodam XXIX/Mambruk Resmi Berdiri, Perkuat Pertahanan Papua Tengah&nbsp;&nbsp;Antar Papua",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-622691",
+      "title": "Kodam XXIX/Mambruk Resmi Dibentuk, Papua Tengah Disiapkan Enam Batalyon Teritorial",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOaV9vY29tYV83Qi1vc21XaXkxZVh0ak5VVGJFdUVucDJkWUlQdFNQYjFmQUotR0ZhQWFKS21uYkpFU2RoRTBtblNyRW5HcWhZeEFJb1F4bF9HbUVpc0pmU2wtVVJUejNWYXBiR2RlT084TnhTMXdfWHM5elZaVmN4VURlWmFOSXFSVEVGdkhpZzJySGxFd1lqcFZveS1odVllRDV5cW1LRFktVlc5TlUwd3FfSGJqaWR5?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Papuapos Nabire",
+      "snippet": "Kodam XXIX/Mambruk Resmi Dibentuk, Papua Tengah Disiapkan Enam Batalyon Teritorial&nbsp;&nbsp;Papuapos Nabire",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-394683",
+      "title": "Kodam XXIX/Mambruk Resmi Hadir di Papua Tengah, Mayjen TNI Aminton Manurung Jabat Pangdam",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPLU9zNGYxZl9yd2VyTENFa2pFQ3hYUWhiSk1FWElSNElmZ2ZqalN3eEtjbVN1d3lvYURvRXFrS1dPTFhHLVcwNWNvYnE1TktmZ0pRbExCYi11Qm9zQW1wb0k4V1NtYWYtTjVmdjMtLUl0bDFMV0ltd2VlZXFscVNWaS04UHBPRnFXcV9RcmZqMnlJaFdxQmZTOTFSNlFVeDRXVl80NEpZV3VuQV9RN1E?oc=5",
+      "date": "Tue, 06 Oct 2026",
+      "source": "ODIYAIWUU",
+      "snippet": "Kodam XXIX/Mambruk Resmi Hadir di Papua Tengah, Mayjen TNI Aminton Manurung Jabat Pangdam&nbsp;&nbsp;ODIYAIWUU",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-651836",
+      "title": "Lahan 206 Hektare di Kawasan Kimi Nabire Bakal Jadi Markas Kodam XXIX/Mambruk",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPeFRaclBId1c3Wl9nVjZiWW1aa01pUmdpWG1NbGhEdHd4czJqb0g4Y3NaWUpEMi1oZmQwdkJ5TERDTW9abTVueUM0Y0cxTjBfZWVudnFQYThRVFhnbXdiQV9MeDlOOWowU2dqTTV0azd2eWVNM3N5Y3Ztd0xBdzBtRlpoR3lJRGtZalMzclp0NFFBaTlxaGVNLTJNVzloQTVzbFVDdWtTSng5bnc?oc=5",
+      "date": "Tue, 13 Oct 2026",
+      "source": "Papua60Detik",
+      "snippet": "Lahan 206 Hektare di Kawasan Kimi Nabire Bakal Jadi Markas Kodam XXIX/Mambruk&nbsp;&nbsp;Papua60Detik",
+      "category": "Pangkalan & Teritorial",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-675703",
+      "title": "Kodam XXIX/Mambruk Resmi Berdiri, Papua Tengah Perkuat Pertahanan",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOR3h4eVdRc2hMX3c2bDlab0RDR3laVi1YdHQzVmtjb2RKbWZhTmc5UmtxZUFFUGVtWjlBYU95MWpJUExzcDVpVm5NemctTXRrQlF6ZHlOb2JhNVBSck1BQU5OYnRmSGZ5UDV6V0JIWVpNN3V6V1RyTE83ZzFyTWVRdGRlVmR3R1FWWS0yXzctRmJQRlRn?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Timika eXpress",
+      "snippet": "Kodam XXIX/Mambruk Resmi Berdiri, Papua Tengah Perkuat Pertahanan&nbsp;&nbsp;Timika eXpress",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-936127",
+      "title": "Peringati HUT ke-81 TNI, Danrem 173/PVB Umumkan Kodam Baru Papua Tengah Bernama Kodam XXIX/Mambruk",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQZ05PNUdCc3VsRUE5THZhbnl5THhoNmYxV1llVklIdmxHTDFRZmhpNk80OGRDRmx3SkdobTdCbFZYRS1OZTV2d1pxQnhzNDZJelJfQnBMd1lSSHE4ejFNV0VicGtrRUVPTnRlS0ZCM2JyVzdnbnE5RjRfUkY5QnRWUVhpYmtxcE1xbU45RUJLcEQ3VzByUWE5d3RBdmZPSndZMHBGbGM5N25zQmFWYWRsazZGQ09FWHlYV3NVRTNUdXotTE80WjZWWVQ3S2FiQnBOYjJVQjRTT1c?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Tribunpapuatengah.com",
+      "snippet": "Peringati HUT ke-81 TNI, Danrem 173/PVB Umumkan Kodam Baru Papua Tengah Bernama Kodam XXIX/Mambruk&nbsp;&nbsp;Tribunpapuatengah.com",
+      "category": "Berita Terkini",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-984607",
+      "title": "Provinsi Papua Tengah Resmi Miliki Kodam Bernama \"Kodam XXIX/Mambruk\"",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNX202cEVFSFBVa1RRaWhRUFlzMDdxRzRhS0ZZZGp5NGNlLTBlaDFyVDR6aG9ad1lUYkxRNGxOQk5XejZUTXp0T1R0TlhhME9XNm4tcGhES1dRZGd4TFRtTDExNm5HZWN5azhGV0lxcVdpRkdMd2ZBQm5MLUlNcVhTQUloRkQ4UnBvdUlNMDdwNEZFaFZYV2xIN0ZnZGVRZkNBTGVVRA?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "seputarpapua.com",
+      "snippet": "Provinsi Papua Tengah Resmi Miliki Kodam Bernama \"Kodam XXIX/Mambruk\"&nbsp;&nbsp;seputarpapua.com",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-477893",
+      "title": "Kodam XXIX/Mambruk Resmi Diresmikan, Penguatan Pertahanan Delapan Kabupaten Papua Tengah Dimulai",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxONkk1NlJfNThLTS03VFVFQnRteGFpNURLNl9kV1oxQjI1aEdXS00wTzg1RzNQY2RPTV9MSTJLY1p3OUhXQU9xT1lEX21KSWh2dmhqOGxMcmZ6MnhyN2x6eU92YUhoMm5OQTBlejNodm9aeUFHV0t3dE95Qmkzem5rSy1Jd0dpNzAtTUxVTU9qYjY2U18zUVY4SW1ia1B3dTZUakJLMGx3d1ZQb2dYbVh3U1JqYXMxQVZ4VlFBa3Rrbw?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Papuanewsonline.com",
+      "snippet": "Kodam XXIX/Mambruk Resmi Diresmikan, Penguatan Pertahanan Delapan Kabupaten Papua Tengah Dimulai&nbsp;&nbsp;Papuanewsonline.com",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-695792",
+      "title": "Kodam XXIX/Mambruk Resmi Dibentuk di Papua Tengah, Markas Sementara Pakai Korem 173/PVB",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNRnJrNXZiYjlZbFp6Q3N3VlQzd1ZqTnV4eVBwNXotZ3BCS0JEcERQVDd0UzVZV3FFbnI2bTVNTXp2dUlFLWRUUTlIOWl2ZEFMOHR0Yng5WkY1N2hCVThsSTNzVlNWaWpLaEExSjlhd0l6ZWlBT05LalZKTHJUU0lZdEJGOGJJbEM4cGdSU3BaRDRoT0FHRjN0VlhTTG5yM3NSZU9qbG1YMGtDdW9KNnEzdzlKU3czQdIBsgFBVV95cUxOeTFpTl9oU3JpYmFsNkZTejBwQXZydDlQNjVOcTdJbXd6cnQtV0NIRzdyZ3hZQWtNczFjNW9iNklDeFB5SWpsTXRBVDRnQkZ6cVFGR01KcUUtTzlJcS1rRU05UW1fc2w5N1ZjMXpoeDNQeUs1UWUzT1lkdk9nLW9zT2w2bk43TE1LcnlsM09taUk3QkpnN09JbnlFb1Z0SC1DVmhJZVRBc0RKdzF0MzdTcWRB?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "VOI.ID",
+      "snippet": "Kodam XXIX/Mambruk Resmi Dibentuk di Papua Tengah, Markas Sementara Pakai Korem 173/PVB&nbsp;&nbsp;VOI.ID",
+      "category": "Peresmian & Pembentukan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-135279",
+      "title": "Mayjen TNI Aminton Manurung Jabat Pangdam XXIX/Mambruk Papua Tengah",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPSVFXSnJDZE91dXBDZlVtSVlVR0pTZVprMFpjZF9tTUVnd2NxUjdTeUttTnpHOWdRdHM2U0FTVFJWVjVXdlVpYkFzeDh2TFZZVktrT2wwNmNPcjVTeWIyaTZ0ZUVjSHNMS1ZFcXpOQ0V0Smd1TTIwLVdqTk5iNVlGYlE4dTFGS3RwMFhkZzFUbHZXRGhmLTE3ejdJUFNvUQ?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Papua60Detik",
+      "snippet": "Mayjen TNI Aminton Manurung Jabat Pangdam XXIX/Mambruk Papua Tengah&nbsp;&nbsp;Papua60Detik",
+      "category": "Pangdam & Pimpinan",
+      "is_live_scraped": true
+    },
+    {
+      "id": "scraped-419493",
+      "title": "Mayjen Aminton Manurung Jabat Pangdam XXIX Mambruk",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNZ0c0UGU0dEQ0ZVA5dkgteUxOU2Y4RUhJVGN6Rlh0amdZMWZLdG01elAxNFRsb1dyaldNeHhnSkhubGhuVHhjeTVVNkhwNHVDakprNGQxQ2xiWTg3WWVDZlRmNFJMWmJYX3llM3lfSkJDWWw3Wm9FaEJES3BwTEFVSGJkMDBiRDlTUUZKWFd3MNIBlAFBVV95cUxORHVRcENPck9WUDR5bXhFMjhUSXRpYm9iRVNZc2x4Sk9WS21WdDJkbkgwYmRONmVFVDJOME1IbEdJdzNWMW5vbUVQdjhwN1dINWlDZlRGQkdycUo4d1laX242SWZfNERnQjRFenh5SG1XaDdOV19SVXdvcWxZamw2LWFVSWZGS3cwQkpPZUh0ZzIyM2d0?oc=5",
+      "date": "Mon, 05 Oct 2026",
+      "source": "Papua Times",
+      "snippet": "Mayjen Aminton Manurung Jabat Pangdam XXIX Mambruk&nbsp;&nbsp;Papua Times",
+      "category": "Pangdam & Pimpinan",
+      "is_live_scraped": true
+    }
+  ]
+};
+
+async function loadMambrukNewsData() {
+  try {
+    const res = await fetch('berita.json?t=' + Date.now());
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.articles && data.articles.length > 0) {
+        window.MAMBRUK_NEWS_DATA = data;
+        return data;
+      }
+    }
+  } catch (e) {
+    console.log('[MAMBRUK NEWS] Fetch berita.json fallback to embedded dataset');
+  }
+  return window.MAMBRUK_NEWS_DATA;
+}
